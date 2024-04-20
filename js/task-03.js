@@ -15,16 +15,25 @@ const images = [
 
 const ulEl = document.querySelector(".gallery");
 
-const liList = images.map((element) => {
-  const liEl = document.createElement("li");
-  const imageEl = document.createElement("img");
-  imageEl.src = element.url;
-  imageEl.alt = element.alt;
-  liEl.appendChild(imageEl);
-  return liEl;
-});
+// const liList = images.map((element) => {
+//   const liEl = document.createElement("li");
+//   const imageEl = document.createElement("img");
+//   imageEl.src = element.url;
+//   imageEl.alt = element.alt;
+//   liEl.appendChild(imageEl);
+//   return liEl;
+// });
 
-console.log(liList);
-liList.forEach((item) => {
-  ulEl.insertAdjacentElement("beforeend", item);
-});
+// console.log(liList);
+// liList.forEach((item) => {
+//   ulEl.insertAdjacentElement("beforeend", item);
+// });
+
+const liRowMaker = ({ url, alt }) => {
+  return `<li>
+  <img src=${url} alt=${alt} width=340>
+  </li>`;
+};
+
+const liListCreation = images.map(liRowMaker).join();
+ulEl.insertAdjacentHTML("beforeend", liListCreation);
